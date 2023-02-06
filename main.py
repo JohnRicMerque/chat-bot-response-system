@@ -40,6 +40,10 @@ def check_all_messages(message):
     response('You\'re welcome!', ['thank', 'thanks'], single_response=True)
     response('Thank you!', ['i', 'love', 'code', 'palace'], required_words=['code', 'palace'])
 
+    best_match = max(highest_prob_list, key=highest_prob_list.get)
+    print(highest_prob_list)
+    return best_match
+
 def get_response(user_input):
     split_message = re.split(r'\s+|[,;?!.-]\s*', user_input.lower()) # removes punctuations to get bare words
     response = check_all_messages(split_message)
