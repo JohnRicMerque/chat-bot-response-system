@@ -18,7 +18,13 @@ def message_probability(user_message, recognised_words, single_response=False, r
         if word not in user_message:
             has_required_words = False
             break
-            
+    
+    # Must either have the required words, or be a single response
+    if has_required_words or single_response:
+        return int(percentage * 100)
+    else:
+        return 0
+
 def get_response(user_input):
     split_message = re.split(r'\s+|[,;?!.-]\s*', user_input.lower()) # removes punctuations to get bare words
     response = check_all_messages(split_message)
