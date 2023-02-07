@@ -43,11 +43,14 @@ def check_all_messages(message):
     # Longer responses
     response(long.R_ADVICE, ['give', 'advice'], required_words=['advice'])
     response(long.R_EATING, ['what', 'you', 'eat'], required_words=['you', 'eat'])
+    response(long.trivia(), ['give', 'me', 'trivia', "computer"], required_words=['trivia'])
 
     best_match = max(highest_prob_list, key=highest_prob_list.get)
-    # print(highest_prob_list)
 
-    return long.unknown() if highest_prob_list[best_match] < 1 else best_match
+    if highest_prob_list[best_match] < 1: 
+        return long.unknown() 
+    else:
+        return best_match
 
 def get_response(user_input):
     split_message = re.split(r'\s+|[,;?!.-]\s*', user_input.lower()) # removes punctuations to get bare words
