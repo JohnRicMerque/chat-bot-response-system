@@ -44,6 +44,7 @@ def check_all_messages(message):
     response(long.R_ADVICE, ['give', 'advice'], required_words=['advice'])
     response(long.R_EATING, ['what', 'you', 'eat'], required_words=['you', 'eat'])
     response(long.trivia(), ['give', 'me', 'trivia', "computer"], required_words=['trivia'])
+    response(long.joke(), ['tell', 'joke', "funny"], required_words=['joke'])
 
     best_match = max(highest_prob_list, key=highest_prob_list.get)
 
