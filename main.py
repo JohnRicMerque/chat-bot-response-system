@@ -36,9 +36,16 @@ def check_all_messages(message):
     # Responses -------------------------------------------------------------------------------------------------------
     response('Hello!', ['hello', 'hi', 'hey', 'sup', 'heyo'], single_response=True)
     response('See you!', ['bye', 'goodbye'], single_response=True)
-    response('I\'m doing fine, and you?', ['how', 'are', 'you', 'doing'], required_words=['how'])
+    response('I\'m doing fine, and you?', ['how', 'are', 'you', 'doing'],  single_response=True)
     response('You\'re welcome!', ['thank', 'thanks'], single_response=True)
     response('Thank you!', ['i', 'love', 'code', 'palace'], required_words=['code', 'palace'])
+
+    # Bot profile responses
+    response('My name is Johnny. Nice to meet you!', ['name', 'what', 'your'], required_words=['name'])
+    response('Not to brag about it but I am ageless.', ['how', 'old', 'you'], single_response=True)
+    response("I like viruses. So I guess I'm vi-sexual", ['gender', 'what'], required_words=['gender'])
+    response('hmm I live in your computer.', ['live', 'where', 'from'], required_words=['where'])
+    response('I think I am more of a purple guy.', ['color', 'favorite'], required_words=['color'])
 
     # Longer responses
     response(long.R_ADVICE, ['give', 'advice'], required_words=['advice'])
@@ -60,4 +67,4 @@ def get_response(user_input):
 
 # Testing the response system
 while True:
-    print('Bot: ' + get_response(input('You: ')))
+    print('Johnny: ' + get_response(input('You: ')))
