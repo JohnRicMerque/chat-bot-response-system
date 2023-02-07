@@ -67,6 +67,10 @@ def get_response(user_input):
     response = check_all_messages(split_message)
     return response
 
-# Testing the response system
-while True:
-    print('Johnny: ' + get_response(input('You: ')))
+def main():
+    print("Johnny: Hello there! I'm Johnny, I am a very cool chat bot. I can tell trivias, quotes and I can even humor you with my jokes and pickup lines!.")
+
+    while True:
+        print('Johnny: ' + get_response(input('You: ')))
+
+main()
