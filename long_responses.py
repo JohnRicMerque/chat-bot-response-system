@@ -1,4 +1,5 @@
 import random
+import requests
 
 R_EATING = "I don't like eating anything because I'm a bot obviously!"
 R_ADVICE = "If I were you, I would go to the internet and type exactly what you wrote there!"
@@ -14,6 +15,13 @@ def joke():
     jokes = ['What did the lava say to his girlfriend? “I lava you!”', "What’s Thanos’ favorite app on his phone? Snapchat.", "What does a storm cloud wear under his raincoat? Thunderwear.", "What do you call an ant who fights crime? A vigilANTe!", "What kind of math do birds love? Owl-gebra!", 'Why was 6 afraid of 7? Because 7,8,9.', 'Why can’t you ever trust atoms? Because they make up everything.', 'What do you call a fish without an eye? A fsh', "What did the ghost call his Mum and Dad? His transparents.", "What kind of nut doesn’t like money? Cash ew", "What do you call a dog magician? A labracadabrador.", "What do you call a fake noodle? An impasta", "Can February March? No, but April May!"]
     response = jokes[random.randrange(len(jokes))]
     return response
+
+def quote():
+    try:
+        response = requests.get("http://api.quotable.io/random").json()
+        return f'"{response["content"]}" - {response["author"]}'
+    except:
+        return "I'm sorry i have no quotes for you today"
 
 def unknown():
     response = ["Could you please re-phrase that? ", "uhmm...", "I didn't quite get that...", "What does that mean?"][random.randrange(4)]

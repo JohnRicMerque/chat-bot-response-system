@@ -43,7 +43,7 @@ def check_all_messages(message):
     # Bot profile responses
     response('My name is Johnny. Nice to meet you!', ['name', 'what', 'your'], required_words=['name'])
     response('Not to brag about it but I am ageless.', ['how', 'old', 'you'], single_response=True)
-    response("I like viruses. So I guess I'm vi-sexual", ['gender', 'what'], required_words=['gender'])
+    response("I like viruses. So I guess I'm vi-sexual.", ['gender', 'what'], required_words=['gender'])
     response('hmm I live in your computer.', ['live', 'where', 'from'], required_words=['where'])
     response('I think I am more of a purple guy.', ['color', 'favorite'], required_words=['color'])
 
@@ -52,6 +52,7 @@ def check_all_messages(message):
     response(long.R_EATING, ['what', 'you', 'eat'], required_words=['you', 'eat'])
     response(long.trivia(), ['give', 'me', 'trivia', "computer"], required_words=['trivia'])
     response(long.joke(), ['tell', 'joke', "funny"], required_words=['joke'])
+    response(long.quote(), ['tell', 'quote',], required_words=['quote'])
 
     best_match = max(highest_prob_list, key=highest_prob_list.get)
 
