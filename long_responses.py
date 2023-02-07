@@ -22,6 +22,11 @@ def quote():
         return f'"{response["content"]}" - {response["author"]}'
     except:
         return "I'm sorry i have no quotes for you today"
+    
+def pickupLines():
+    pUpLines = ["Are you an exception? Let me catch you.", "You are my increment operator. You make my value increase.", "I think you're my compiler. My life wouldn't start without you.", "I am a BufferedReader. You input meaning into my life.", "You are my semicolon; always present in everything I do.", "If I were a method, you must be my parameter, because I will always need you.", "Can you be my private variable? I want to be the only one with access to you.", "We are an aggregation of classes: one cannot exist without the other.", "public class YourWorld extends MyWorld", "My love is a for loop without the increment operator-- infinitive, non-terminating, and difficult to stop once it starts running.", "Let me be the 'throws Exception' to your 'public static void main (String[] args)'. I will accept whatever you give me.","You are my superclass: you define what I can do.", "You are the IDE of my life: I find it easier because of you.", "My main method is 'public love iLoveYou().' ","I am the field attribute in your class: I can't exist unless you do.", "My love for you is a constant variable: unupdatable and unchangeable.", "Are you an applet? You make me feel all GUI (gooey) inside.", "You are my loop condition. I keep coming back to you.", "Can you be my EventListener? That way you notice everything that I do.", "I am a boolean method whose love will always return true."]
+    response = pUpLines[random.randrange(len(pUpLines))]
+    return response
 
 def unknown():
     response = ["Could you please re-phrase that? ", "uhmm...", "I didn't quite get that...", "What does that mean?"][random.randrange(4)]
