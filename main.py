@@ -1,5 +1,7 @@
 import re
 import long_responses as long
+import discord
+import main
 
 def message_probability(user_message, recognised_words, single_response=False, required_words=[]):
     message_certainty = 0
@@ -39,6 +41,7 @@ def check_all_messages(message):
     response('I\'m doing fine, and you?', ['how', 'are', 'you', 'doing'],  single_response=True)
     response('You\'re welcome!', ['thank', 'thanks'], single_response=True)
     response('Thank you!', ['i', 'love', 'code', 'palace'], required_words=['code', 'palace'])
+    response('hahaha!',['haha','hahaha', 'funny'], single_response=True)
 
     # Bot profile responses
     response('My name is Johnny. Nice to meet you!', ['name', 'what', 'your'], required_words=['name'])
@@ -73,4 +76,42 @@ def main():
     while True:
         print('Johnny: ' + get_response(input('You: ')))
 
-main()
+async def send_message(message, user_message, is_private):
+    try:
+        response = get_response(user_message)
+        await message.author.send(response) if is_private else await message.channel.send(response)
+
+    except Exception as e:
+        print(e)
+
+def run_discord_bot():
+    TOKEN = 'MTA3Mjg5NTA3MjExNjQxNjU3Mg.G-f5Vj.jpKqPByoMCPNVfvRsA6bMXxD_D6qJyfYB6EGLc'
+    intents = discord.Intents.default()
+    intents.message_content = True
+    client = discord.Client(intents=intents)
+
+    @client.event
+    async def on_ready():
+        print(f'{client.user} is now running!')
+
+    @client.event
+    async def on_message(message):
+        if message.author == client.user:
+            return
+
+        username = str(message.author)
+        user_message = str(message.content)
+        channel = str(message.channel)
+
+        print(f'{username} said: "{user_message}" ({channel})')
+
+        if user_message[0] == '?':
+            user_message = user_message[1:]
+            await send_message(message, user_message, is_private=True)
+        else:
+            await send_message(message, user_message, is_private=False)
+
+    client.run(TOKEN)
+
+if __name__ == '__main__':
+    run_discord_bot()
