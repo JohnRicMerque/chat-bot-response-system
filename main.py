@@ -1,7 +1,7 @@
 import re
 import long_responses as long
 import discord
-import main
+import json
 
 def message_probability(user_message, recognised_words, single_response=False, required_words=[]):
     message_certainty = 0
@@ -85,7 +85,8 @@ async def send_message(message, user_message, is_private):
         print(e)
 
 def run_discord_bot():
-    TOKEN = 'MTA3Mjg5NTA3MjExNjQxNjU3Mg.G-f5Vj.jpKqPByoMCPNVfvRsA6bMXxD_D6qJyfYB6EGLc'
+    with open("config.json", "r") as f:
+        config = json.load(f)
     intents = discord.Intents.default()
     intents.message_content = True
     client = discord.Client(intents=intents)
@@ -111,7 +112,10 @@ def run_discord_bot():
         else:
             await send_message(message, user_message, is_private=False)
 
-    client.run(TOKEN)
+    client.run(config['token'])
 
 if __name__ == '__main__':
-    run_discord_bot()
+    try:
+        run_discord_bot() # in case token is closed user can talk to johnny in terminal
+    except:
+        main()
