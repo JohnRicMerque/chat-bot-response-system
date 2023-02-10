@@ -45,7 +45,7 @@ def check_all_messages(message):
 
     # Bot profile responses
     response('My name is Johnny. Nice to meet you!', ['name', 'what', 'your'], required_words=['name'])
-    response('Not to brag about it but I am ageless.', ['how', 'old', 'you'], single_response=True)
+    response('Not to brag about it but I am ageless.', ['what', 'age', 'your'], required_words=['age'])
     response("I like viruses. So I guess I'm vi-sexual.", ['gender', 'what'], required_words=['gender'])
     response('hmm I live in your computer.', ['live', 'where', 'from'], required_words=['where'])
     response('I think I am more of a purple guy.', ['color', 'favorite'], required_words=['color'])
@@ -57,6 +57,7 @@ def check_all_messages(message):
     response(long.joke(), ['tell', 'joke', "funny"], required_words=['joke'])
     response(long.quote(), ['tell', 'say', 'quote',], required_words=['quote'])
     response(long.pickupLines(), ['tell', 'pickup', 'line', 'say'], required_words=['pickup', 'line'])
+    response(long.weather(message), ['check', 'what', 'weather', 'tell'], required_words=['weather'])
 
     best_match = max(highest_prob_list, key=highest_prob_list.get)
 
@@ -116,6 +117,6 @@ def run_discord_bot():
 
 if __name__ == '__main__':
     try:
-        run_discord_bot() # in case token is closed user can talk to johnny in terminal
+        run_discord_bot() 
     except:
-        main()
+        main() # in case discord token is closed user can talk to johnny in terminal

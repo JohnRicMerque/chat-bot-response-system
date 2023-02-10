@@ -1,5 +1,6 @@
 import random
 import requests
+import main
 
 R_EATING = "I don't like eating anything because I'm a bot obviously!"
 R_ADVICE = "If I were you, I would go to the internet and type exactly what you wrote there!"
@@ -32,3 +33,24 @@ def pickupLines():
 def unknown():
     response = ["Could you please re-phrase that? ", "uhmm...", "I didn't quite get that...", "What does that mean?"][random.randrange(4)]
     return response
+
+def weather(message):
+    city_name = message[-1]
+    API_KEY = "4d7436b2e953a39a0d36c842e7742e02"
+    BASE_URL = "http://api.openweathermap.org/data/2.5/weather"  
+    request_url = f"{BASE_URL}?appid={API_KEY}&q={city_name}"
+    response = requests.get(request_url)
+
+    try:
+        data = response.json()
+        weather = data['weather'][0]["description"]
+        temperature = round(data['main']['temp'] - 273.15)
+        feels_like = round(data['main']['feels_like'] - 273.15)
+        wind_speed = data['wind']['speed']
+        country = data['sys']['country']
+        
+        response = f"{city_name.title()}, {country} is having {weather}.\nThe current temperature in the city is {temperature}°C.\nBut it would feel like {feels_like}°C.\nWhile the current wind speed in the area is {wind_speed}m/s.\nThat's all, stay safe!"
+        return response
+
+    except:
+        return "Im sorry I can't check the weather for you at this moment. Try again?"
