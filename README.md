@@ -2,7 +2,12 @@
 This program is a discord chat bot called Johnny. It can answer some personal questions, tell trivias, tell quotes from famous authors, or humor users with jokes or pickup lines. Johnny can also tell the weather in a city, just make sure to add the word 'weather' to input, and make the city name be the last word in the message. 
 
 ## Preview
+### Screenshot
 <img src="./botpreview.gif">
+
+### Project Presentation Demo
+[YouTube Link: Johnny Discord Bot](https://youtu.be/Wn4Hp2Q-8js)
+
 
 ## Data Structures Used
 Johnny uses a message probability system for generating accurate responses. The probability is derived from comparing user input transformed into list with a list of keywords that corresponds to a specific bot response. Then it utilizes python dictionary to document the response with its corresponding probability in a key-value pair, then it matches the response with highest probability and returns it.</br>
